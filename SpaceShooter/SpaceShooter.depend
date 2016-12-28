@@ -1,0 +1,16 @@
+# depslib dependency file v1.0
+1482916424 source:c:\users\user\documents\project\spaceshooter\main.cpp
+	"SpaceShooter.h"
+
+1482916397 c:\users\user\documents\project\spaceshooter\spaceshooter.h
+	<iostream>
+	<conio.h>
+	<ctime>
+	<stdio.h>
+	<cstdlib>
+	<stdlib.h>
+	<windows.h>
+
+1482916198 source:c:\users\user\documents\project\spaceshooter\spaceshooter.cpp
+	"SpaceShooter.h"
+
