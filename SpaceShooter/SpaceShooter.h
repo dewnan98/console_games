@@ -67,6 +67,8 @@ void logic();
 void update();
 void maps();
 void setup();
+void shoot();
+bool shot();
 void draw();
 
 

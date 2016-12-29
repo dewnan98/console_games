@@ -14,3 +14,15 @@
 1482916198 source:c:\users\user\documents\project\spaceshooter\spaceshooter.cpp
 	"SpaceShooter.h"
 
+1482916424 source:c:\g\console_games\spaceshooter\main.cpp
+	"SpaceShooter.h"
+
+1482927138 c:\g\console_games\spaceshooter\spaceshooter.h
+	<iostream>
+	<conio.h>
+	<ctime>
+	<stdio.h>
+	<cstdlib>
+	<stdlib.h>
+	<windows.h>
+
