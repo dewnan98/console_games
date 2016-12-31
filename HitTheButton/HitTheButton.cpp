@@ -51,6 +51,7 @@ int randomarray[100];
 int score;
 int colour[4];
 int combos;
+bool missed;
 bool gameover;
 bool kena;
 void maps();
@@ -113,17 +114,23 @@ void play () {
 
 void draw () {
 
-    for (int a =0 ; a<jumlah ; a++) {
-        gotoxy(o[a].x, o[a].y);
-        cout<<"o";
 
+
+    gotoxy(lebar +1 , 5);
+         cout<<"      ";
+    if (missed)
+    {
+         gotoxy(lebar +1 , 5);
+         cout<<"MISSED ";
     }
-
 
     gotoxy(lebar +1 , 1);
     cout<<"SCORE : "<<score;
 
-    gotoxy (lebar/2, panjang /2);
+    gotoxy(lebar +1 , 3);
+    cout<<"        ";
+
+   gotoxy(lebar +1 , 3);
     cout<<"COMBO "<<combos;
 
 
@@ -157,13 +164,19 @@ void draw () {
     gotoxy(button[3].ax,button[3].ay +2 );
     cout<<"|_____|";
 
+   for (int a =0 ; a<jumlah ; a++) {
+        gotoxy(o[a].x, o[a].y);
+        cout<<"o";
 
+    }
 
 }
 
 void logic() {
+    missed=false;
     ogenerate();
     hits = false;
+kena=true;
 
     for(int a=0; a<jumlah; a++) {
         gotoxy(o[a].x, o[a].y);
@@ -178,6 +191,7 @@ void logic() {
     for(int a=0; a<jumlah; a++) {
 
         if(o[a].y > panjang) {
+                miss();
 
             sorting(a);
 
@@ -208,9 +222,12 @@ void logic() {
         hits=true;
         tombol=3;
     }
+
+
     if (hits)
 {
-  int  a=0;
+  int  a;
+  a=0;
     while (kena)
     {
 
@@ -218,11 +235,14 @@ void logic() {
 
 
 
-        a++;
-        if (a==jumlah-1)
+            if (a>jumlah)
         {
+            miss();
             kena = false;
         }
+        a++;
+
+
 
     }
 
@@ -255,7 +275,7 @@ void input () {
 
         }
 
-        Sleep(50);
+        Sleep(35);
         ketik=false;
 
     }
@@ -289,6 +309,21 @@ void ogenerate() {
 
 }
 
+void hit (int a ,int x)
+{
+    if (o[a].y >= button[x].ay-2 && o[a].y <= button[x].by
+        &&o[a].x >= button[x].ax && o[a].x <= button[x].bx  )
+        {combo();
+        kena = false;
+        sorting(a);
+        }
+
+    else kena = true ;
+
+
+}
+
+
 void sorting (int a) {
     o[a].x = o[jumlah-1].x;
     o[a].y = o[jumlah-1].y;
@@ -297,17 +332,6 @@ void sorting (int a) {
 
 }
 
-void hit (int a ,int x)
-{
-    if (o[a].y >= button[x].ay && o[a].x <= button[x].by )
-        {combo();
-        kena = false;
-        }
-
-    else kena = true ;
-
-
-}
 
 void combo ()
 {
@@ -317,6 +341,12 @@ score+=10;
 
 }
 
+
+void miss()
+{
+    combos =0;
+    missed=true;
+}
 void maps ()
 
 {
