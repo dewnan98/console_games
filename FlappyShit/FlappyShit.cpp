@@ -12,8 +12,8 @@ const int tinggi =20;
 class Up_Pipe
 {
     public :
-    int x;
-    int y;
+    float x;
+    float y;
 };
 
 class B_Pipe
@@ -39,8 +39,8 @@ public :
 
 };
 Bird bird;
-Up_Pipe u_pipe;
-B_Pipe b_pipe;
+Up_Pipe u_pipe[3];
+B_Pipe b_pipe[3];
 Space space;
 
 void start();
@@ -53,8 +53,13 @@ void maps();
 void draw();
 void draw_pipe();
 void delete_pipe();
-
+void reset_pipe(int a);
+void death_animation();
+const int gravity = 1;
+int jumlah=0;
+int jarak=0;
 char key;
+int score=0;
 void gotoxy(int x , int y);
 bool gameover;
 int main ()
@@ -68,7 +73,7 @@ srand(time(0));
 
 void setup ()
 {
-    gotoxy(0 , 0);
+    gotoxy(0 , 1);
 maps();
     gameover=false;
 
@@ -76,30 +81,45 @@ bird.x=4;
 bird.y=tinggi/2;
 
 
+
+
 }
 
 void play ()
 {
+    draw ();
+gotoxy(0,tinggi+2);
+cout<<"Enter Space to Jump ....";
 
-    pipe_generate();
+key=getch();
+gotoxy(0,tinggi+2);
+cout<<"                           ";
+
+
 
     while (!gameover)
     {
 
 
+    logic();
    draw ();
+
    input();
-   logic();
+
     }
+
 
 }
 
 void draw()
 {
-    draw_pipe();
+
 
 gotoxy(bird.x , bird . y);
 cout<<"O";
+draw_pipe();
+gotoxy(0,0);
+cout<<"SCORE : "<<score;
 
 
 }
@@ -109,12 +129,14 @@ void logic ()
 
      delete_pipe();
 
-    u_pipe.x-=1;
-    b_pipe.x-=1;
+for (int a=0;a<jumlah;a++){
+    u_pipe[a].x-=1;
+    b_pipe[a].x-=1;
+}
 
     gotoxy(bird.x , bird . y);
     cout<<" ";
-    bird.y+=1;
+    bird.y+=gravity;
 
             if (key==' ')
         {
@@ -124,18 +146,27 @@ void logic ()
         }
 
 
-    if (bird.y >= tinggi-2 || bird.y  <=0)
+    if (bird.y >= tinggi || bird.y  <=0)
         gameover=true;
 
-    if (u_pipe. x < 0 && b_pipe.x <0)
-        pipe_generate();
 
-if (bird . x >= b_pipe.x && bird . x <= b_pipe.x+1   &&  ( bird . y <=u_pipe.y
-    ||  bird . y >=b_pipe.y))
+for (int a=0;a<jumlah;a++)
+{
+
+    if (bird.x == u_pipe[a].x+1 )
+    score++;
+
+
+    if (u_pipe[a].x < 0 && b_pipe[a].x <0)
+        reset_pipe(a);
+        if (bird. x >= b_pipe[a].x && bird. x <= b_pipe[a].x+1   &&  ( bird . y <=u_pipe[a].y
+    ||  bird . y >=b_pipe[a].y))
     gameover=true;
 
+}
 
-
+        if (jarak%25==0)
+        pipe_generate();
 
 }
 
@@ -152,6 +183,7 @@ void input ()
     }
 
     Sleep(60);
+    jarak++;
 
 
 }
@@ -166,13 +198,25 @@ void pipe_generate ()
     space.y=rand()%tinggi;
     if(space.y>tinggi-5)space.y-=6;
     if (space.y < 5)space.y+=6;
-    u_pipe.x= lebar;
-    u_pipe.y=space.y-3;
-    b_pipe.x= lebar;
-    b_pipe.y=space.y+3;
+    u_pipe[jumlah].x= lebar;
+    u_pipe[jumlah].y=space.y-3;
+    b_pipe[jumlah].x= lebar;
+    b_pipe[jumlah].y=space.y+3;
+
+    jumlah++;
 
 
 
+}
+
+void reset_pipe(int a)
+{
+
+u_pipe[a].x=u_pipe[jumlah-1].x;
+b_pipe[a].x=b_pipe[jumlah-1].x;
+u_pipe[a].y=u_pipe[jumlah-1].y;
+b_pipe[a].y=b_pipe[jumlah-1].y ;
+jumlah--;
 }
 
 
@@ -192,37 +236,54 @@ void maps()
 }
 void draw_pipe()
 {
+    for (int b=0;b<jumlah;b++)
+{
 
-    for (int a=0;a<u_pipe.y;a++)
+    for (int a=0;a<u_pipe[b].y-1;a++)
     {
-     gotoxy(u_pipe.x , u_pipe.y-a);
+     gotoxy(u_pipe[b].x , u_pipe[b].y-a);
      cout<<"[]";
     }
-    for (int a=b_pipe.y; a<tinggi-1  ;a++)
+}
+    for (int b=0;b<jumlah;b++)
+{
+
+    for (int a=b_pipe[b].y; a<tinggi  ;a++)
     {
-     gotoxy(b_pipe.x , a);
+     gotoxy(b_pipe[b].x , a);
      cout<<"[]";
     }
+}
 
 
 }
 
 void delete_pipe()
 {
-    for (int a=0;a<u_pipe.y;a++)
+for (int b=0;b<jumlah;b++)
+{
+
+
+    for (int a=0;a<u_pipe[b].y-1;a++)
     {
-     gotoxy(u_pipe.x+1 , u_pipe.y-a);
+     gotoxy(u_pipe[b].x , u_pipe[b].y-a);
      cout<<"  ";
     }
+}
+for (int b=0;b<jumlah;b++)
+{
 
-    for (int a=b_pipe.y; a<tinggi-1  ;a++)
+    for (int a=b_pipe[b].y; a<tinggi  ;a++)
     {
-     gotoxy(b_pipe.x , a);
+     gotoxy(b_pipe[b].x , a);
      cout<<"  ";
-    }
 
+
+    }
 
 }
+}
+
 
 void gotoxy(int x , int y)
 {
