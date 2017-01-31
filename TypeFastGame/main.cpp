@@ -196,8 +196,8 @@ void setup()
     kata=1;
     countdown=30;
 
-        for (int a=0; a<=100; a++) {
-            for(int b=0; b<=100; b++) {
+        for (int a=0; a<100; a++) {
+            for(int b=0; b<100; b++) {
                 warnahuruf[a][b]=7;
             }
         }
