@@ -61,6 +61,7 @@ int jarak=0;
 char key;
 int score=0;
 void gotoxy(int x , int y);
+void setColor(int value);
 bool gameover;
 int main ()
 
@@ -88,11 +89,12 @@ bird.y=tinggi/2;
 void play ()
 {
     draw ();
-gotoxy(0,tinggi+2);
+gotoxy(0,tinggi-3);
+setColor(176);
 cout<<"Enter Space to Jump ....";
 
 key=getch();
-gotoxy(0,tinggi+2);
+gotoxy(0,tinggi-3);
 cout<<"                           ";
 
 
@@ -113,17 +115,21 @@ cout<<"                           ";
 
 void draw()
 {
+    draw_pipe();
 
+
+gotoxy(lebar/2,3);
+setColor(191);
+cout<<score;
 
 gotoxy(bird.x , bird . y);
-cout<<"O";
-draw_pipe();
-gotoxy(0,0);
-cout<<"SCORE : "<<score;
+setColor(190);
+cout<<char(223);
+gotoxy(0, 1);
+cout<<" ";
 
 
 }
-
 void logic ()
 {
 
@@ -222,14 +228,24 @@ jumlah--;
 
 void maps()
 {
-   for (int a=1;a<=tinggi;a++)
+   for (int a=1;a<=tinggi+5;a++)
    {
-       for(int b=1;b<=lebar;b++)
+       for(int b=1;b<=lebar+2;b++)
        {
-           if (a==1 || a==tinggi )
-           cout<<"_";
+           if ( a==tinggi )
+           {
 
-            else cout<<" ";
+           setColor(106);
+           cout<<char(177);
+           }
+        else if (a>tinggi)
+        {
+            setColor(126);
+            cout<<" ";
+        }
+
+            else {setColor (191);cout<<" ";
+            }
        }cout<<endl;
    }
 
@@ -242,7 +258,8 @@ void draw_pipe()
     for (int a=0;a<u_pipe[b].y-1;a++)
     {
      gotoxy(u_pipe[b].x , u_pipe[b].y-a);
-     cout<<"[]";
+     setColor(178);
+     cout<<char(178)<<char{178};
     }
 }
     for (int b=0;b<jumlah;b++)
@@ -251,7 +268,8 @@ void draw_pipe()
     for (int a=b_pipe[b].y; a<tinggi  ;a++)
     {
      gotoxy(b_pipe[b].x , a);
-     cout<<"[]";
+     setColor(178);
+     cout<<char(178)<<char(178);
     }
 }
 
@@ -284,7 +302,10 @@ for (int b=0;b<jumlah;b++)
 }
 }
 
-
+void setColor(int value){
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),  value);
+}
 void gotoxy(int x , int y)
 {
     COORD coord;
