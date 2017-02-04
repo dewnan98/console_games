@@ -1,0 +1,27 @@
+# depslib dependency file v1.0
+1486176264 source:c:\users\dewa nanda\documents\source code\console games\marioshit.project\marioshit\main.cpp
+	"Mario.h"
+	"Enemy.h"
+	"GLOBALVARIABEL.h"
+
+1486135203 c:\users\dewa nanda\documents\source code\console games\marioshit.project\marioshit\include\globalvariabel.h
+	<stdio.h>
+	<tchar.h>
+	<windows.h>
+	<iostream>
+	<stdlib.h>
+
+1486172700 c:\users\dewa nanda\documents\source code\console games\marioshit.project\marioshit\include\mario.h
+
+1486176415 source:c:\users\dewa nanda\documents\source code\console games\marioshit.project\marioshit\src\enemy.cpp
+	"Mario.h"
+	"Enemy.h"
+	"GLOBALVARIABEL.h"
+
+1486176415 c:\users\dewa nanda\documents\source code\console games\marioshit.project\marioshit\include\enemy.h
+
+1486113784 source:c:\users\dewa nanda\documents\source code\console games\marioshit.project\marioshit\src\mario.cpp
+	"Mario.h"
+	"Enemy.h"
+	"GLOBALVARIABEL.h"
+

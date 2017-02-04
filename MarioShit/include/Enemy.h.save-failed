@@ -1,0 +1,28 @@
+#ifndef ENEMY_H
+#define ENEMY_H
+
+#include "GLOBALVARIABEL.h"
+
+class Enemy
+{
+
+      private:
+          int x;
+          int y;
+          int enemySpawn;
+
+
+    public:
+        Enemy();
+
+        void collision ();
+        void draw();
+        void spawn();
+
+
+
+
+
+}mushroom[5];
+
+#endif // ENEMY_H
