@@ -1,0 +1,32 @@
+# depslib dependency file v1.0
+1487679585 source:c:\users\dewa nanda\documents\source code\console games\pacshit\main.cpp
+	<iostream>
+	"include/Pacman.h"
+	"include/Enemy.h"
+	"include/Variabel Global.h"
+
+1487486493 c:\users\dewa nanda\documents\source code\console games\pacshit\include\pacman.h
+
+1487679545 c:\users\dewa nanda\documents\source code\console games\pacshit\include\enemy.h
+
+1487482599 c:\users\dewa nanda\documents\source code\console games\pacshit\include\variabel global.h
+	<stdio.h>
+	<tchar.h>
+	<windows.h>
+	<iostream>
+	<stdlib.h>
+	<conio.h>
+
+1487680182 source:c:\users\dewa nanda\documents\source code\console games\pacshit\src\enemy.cpp
+	"../include/Pacman.h"
+	"../include/Enemy.h"
+	"../include/Variabel Global.h"
+
+1487486582 source:c:\users\dewa nanda\documents\source code\console games\pacshit\src\pacman.cpp
+	"../include/Pacman.h"
+	"../include/Enemy.h"
+	"../include/Variabel Global.h"
+
+1487482606 source:c:\users\dewa nanda\documents\source code\console games\pacshit\src\variabel global.cpp
+	"../include/Variabel Global.h"
+
